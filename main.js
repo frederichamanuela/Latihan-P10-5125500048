@@ -30,11 +30,12 @@ function kartu(k) {
   return kolom;
 }
  
-function tampil() {
-  const hasil = saring();
-  galeri.replaceChildren(...hasil.map(kartu));
-  jumlah.textContent = `Menampilkan ${hasil.length} dari ${KARYA.length} karya`;
-}
+     function tampil() {
+     const hasil = saring();
+     galeri.replaceChildren(...hasil.map(kartu));
+     pasangDetail();
+     jumlah.textContent = `Menampilkan ${hasil.length} dari ${KARYA.length} karya`;
+   }
  
 function pasangDetail() {
   galeri.querySelectorAll('button[data-id]').forEach((tombol) => {
@@ -47,6 +48,5 @@ function pasangDetail() {
 }
  
 tampil();
-pasangDetail();
 cari.addEventListener('input', tampil);
 document.querySelector('#filterKategori').addEventListener('change', tampil);
