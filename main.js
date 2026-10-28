@@ -5,11 +5,11 @@ const cari = document.querySelector('#cari');
 const filterKategori = document.querySelector('#filterKategori');
  
 function saring() {
-  const kata = cari.value.trim();
+const kata = cari.value.trim().toLowerCase();
   const kategori = filterKategori.value;
   return KARYA.filter((k) =>
     (kategori === 'semua' || k.kategori === kategori) &&
-    k.judul.includes(kata));
+    k.judul.toLowerCase().includes(kata));
 }
  
 function kartu(k) {
