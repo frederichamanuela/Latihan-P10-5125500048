@@ -1,8 +1,9 @@
+# DEBUG_LOG: Katalog Karya (Tugas P10)
 Semua perbaikan dikerjakan di cabang `fix/katalog`, satu commit per bug, lalu digabung ke `main`.
 
-BUG-01 (G1): logo navbar tidak tampil
+## BUG-01 (G1): logo navbar tidak tampil
 - **Reproduksi:** Buka halaman, di navbar yang muncul cuma ikon gambar rusak.
-- **Hipotesis 1:** Mungkin file `logo.svg` hilang atau rusak. Ternyata bukan: di Explorer VS Code, `assets/logo.svg` ada. [cek: bisa dibuka langsung di /assets/logo.svg]
+- **Hipotesis 1:** Mungkin file `logo.svg` hilang atau rusak. Ternyata bukan: di Explorer VS Code, `assets/logo.svg` ada. 
 - **Hipotesis 2:** Path di `index.html` salah folder. Terbukti.
 - **Bukti DevTools:** Tab Network menampilkan permintaan ke `http://127.0.0.1:5500/img/logo.svg` dengan status 404 dan Content-Type `text/html` (halaman error Live Server, bukan SVG). Folder `img/` memang tidak ada, yang ada `assets/`.
 - **Perbaikan:** `index.html:13`, `img/logo.svg` diganti `assets/logo.svg` (commit `1df60fb`).
@@ -38,7 +39,7 @@ BUG-01 (G1): logo navbar tidak tampil
 - **Hipotesis 2:** Listener klik hilang karena tombolnya dibuat ulang. Terbukti.
 - **Bukti DevTools:** Di Elements > Event Listeners, tombol Detail sebelum mencari punya `click` dari `main.js:41`. Sesudah mencari, tombol hasil pencarian menampilkan "No event listeners". Sempat salah pilih elemen (`body`, lalu `div#galeri`) sehingga listener tampak kosong, jadi harus memilih tombolnya langsung. `tampil()` memakai `replaceChildren` yang membuat tombol baru, sedangkan `pasangDetail()` hanya dipanggil sekali di akhir berkas.
 - **Perbaikan:** `main.js:36`, `pasangDetail();` ditambahkan di dalam `tampil()` setelah `replaceChildren`, dan panggilan yang berdiri sendiri di bagian bawah berkas dihapus agar tombol tidak punya dua listener. Indentasi `tampil()` ikut dirapikan (commit `b9a848c`).
-- **Uji ulang:** Mencari "Video" lalu klik Detail menampilkan "Video Profil Laboratorium — Video, dibuat oleh Kelompok B (2026)".
+- **Uji ulang:** Mencari "Video" lalu klik Detail menampilkan "Video Profil Laboratorium Video, dibuat oleh Kelompok B (2026)".
 
 ## BUG-06 (G6): pencarian huruf kecil tidak menemukan karya
 - **Reproduksi:** Mengetik "Animasi" menampilkan 2 kartu, tapi "animasi" tidak menampilkan satu pun.
