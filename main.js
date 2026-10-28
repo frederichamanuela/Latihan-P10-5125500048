@@ -49,4 +49,4 @@ function pasangDetail() {
 tampil();
 pasangDetail();
 cari.addEventListener('input', tampil);
-document.querySelector('#filter-kategori').addEventListener('change', tampil);
+document.querySelector('#filterKategori').addEventListener('change', tampil);
